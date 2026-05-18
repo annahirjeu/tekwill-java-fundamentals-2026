@@ -2,6 +2,8 @@ package smarthome;//*************************************************//
 //          INTHER LOGISTICS ENGINEERING           //
 //*************************************************//
 
+import java.util.Scanner;
+
 /**
  *
  * @author aminoiu
@@ -24,5 +26,11 @@ public class SmartHome {
         SmartTV smartTv2 = new SmartTV();
         smartTv2.displayStatus();
         smartTv2.turnOn();
+
+        CameraDevice cameraDevice = new CameraDevice("Front Door Camera", "High", true, "admin");
+        cameraDevice.displayStatus();
+        cameraDevice.getSecurityLevel();
+        cameraDevice.startRecording();
+        cameraDevice.turnOff();
     }
 }
