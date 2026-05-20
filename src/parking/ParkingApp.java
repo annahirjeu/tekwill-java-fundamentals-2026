@@ -28,19 +28,16 @@ public class ParkingApp {
 
                 case 3 -> {
                     searchVehicleByPlateNumber();//search vehicle by plate number
-
                 }
                 case 4 -> {
                     sortVehicleByFee();//sort vehicles
-                }
-                case 5 -> {//exit
                 }
                 default -> System.out.println("Invalid option, choose again:");
 
             }
 
         }
-        while (true);
+        while (option != 5);
     }
 
     private static void sortVehicleByFee() {
@@ -52,6 +49,7 @@ public class ParkingApp {
         Vehicle[] sortedVehicles = vehicles.clone();
         for (int i = 0; i < sortedVehicles.length; i++) {
             for (int j = 0; j < sortedVehicles.length - 1; j++) {
+                if (sortedVehicles[j] == null || sortedVehicles[j + 1] == null) break;
                 if (sortedVehicles[j].calculateParkingFee() > sortedVehicles[j + 1].calculateParkingFee()) {
                     Vehicle temp = sortedVehicles[j];
                     sortedVehicles[j] = sortedVehicles[j + 1];
@@ -73,6 +71,7 @@ public class ParkingApp {
 
     private static Vehicle findVehicleByPlateNumber(String plateNumber) {
         for (int i = 0; i < numberOfVehicles; i++) {
+            if (vehicles[i] == null) break;
             if (vehicles[i].getPlateNumber().equals(plateNumber)) return vehicles[i];
         }
         return null;
@@ -85,6 +84,7 @@ public class ParkingApp {
         }
         System.out.println("Number of vehicles in the parking lot: " + numberOfVehicles);
         for (int i = 0; i < numberOfVehicles; i++) {
+            if (vehicles[i] == null) break;
             System.out.println("Vehicle " + (i + 1) + ":");
             vehicles[i].displayVehicleInfo();
         }
@@ -97,6 +97,7 @@ public class ParkingApp {
         }
         System.out.println("Number of vehicles in the parking lot: " + vehicles.length);
         for (int i = 0; i < vehicles.length; i++) {
+            if (vehicles[i] == null) break;
             System.out.println("Vehicle " + (i + 1) + ":");
             vehicles[i].displayVehicleInfo();
         }

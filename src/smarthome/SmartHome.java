@@ -32,5 +32,30 @@ public class SmartHome {
         cameraDevice.getSecurityLevel();
         cameraDevice.startRecording();
         cameraDevice.turnOff();
+
+        SmartHome smartHome = new SmartHome();
+        SmartHome.Room livingRoom = smartHome.new Room("Living Room");
+        livingRoom.addDevices(new SmartDevice[]{smartLight, smartTV});
+        livingRoom.displayRoom();
+    }
+
+    class Room {
+        String roomName;
+        SmartDevice[] devices = new SmartDevice[2];
+
+        Room(String roomName) {
+            this.roomName = roomName;
+        }
+
+        void displayRoom() {
+            System.out.println("Room Name: " + roomName);
+            for (SmartDevice device : devices) {
+                device.displayStatus();
+            }
+        }
+
+        void addDevices(SmartDevice[] addedDevices) {
+            devices = addedDevices;
+        }
     }
 }
