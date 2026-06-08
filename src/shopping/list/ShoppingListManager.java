@@ -36,7 +36,7 @@ public class ShoppingListManager {
             System.out.println("====================");
             System.out.println("Enter your choice: ");
             int choice = Integer.parseInt(scanner.nextLine());
-
+            if (choice == 10) break;
             switch (choice) {
                 case 1 -> addProduct();
                 case 2 -> showList();
@@ -44,11 +44,44 @@ public class ShoppingListManager {
                 case 4 -> addProductAtPosition();
                 case 5 -> replaceProduct();
                 case 6 -> removeFirstElement();
+                case 7 -> verifyIfProductExists();
+                case 8 -> getNumberOfProducts();
+                case 9 -> clearList();
+//                case 10 -> System.exit(0);
             }
+
 
         } while (true);
 
 
+    }
+
+    private static void clearList() {
+        shoppingList.clear();
+        System.out.println("List cleared");
+    }
+
+    private static void getNumberOfProducts() {
+        System.out.println("Number of products: " + shoppingList.size());
+    }
+
+    private static void verifyIfProductExists() {
+        System.out.println("Enter product name to verify: ");
+        String productName = scanner.nextLine();
+/*        if(shoppingList.contains(productName)){
+            System.out.println("The product exists in the list");
+        } else {
+            System.out.println("The product does not exist in the list");
+        }*/
+
+        for (String product : shoppingList) {
+            String productLowerCase = product.toLowerCase();
+            String productNameLowerCase = productName.toLowerCase();
+            if (productLowerCase.equals(productNameLowerCase)) {
+                System.out.println("The product exists in the list");
+                return;
+            }
+        }
     }
 
     private static void removeFirstElement() {
@@ -111,11 +144,9 @@ public class ShoppingListManager {
 
     }
 
-    private static boolean addProduct() {
+    private static void addProduct() {
         System.out.println("Enter product name: ");
         String productName = scanner.nextLine();
-        if (productName.equalsIgnoreCase("exit")) return true;
         shoppingList.add(productName);
-        return false;
     }
 }
