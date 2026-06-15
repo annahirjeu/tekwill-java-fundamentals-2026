@@ -2,11 +2,9 @@
 //          INTHER LOGISTICS ENGINEERING           //
 //*************************************************//
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -62,7 +60,13 @@ public class Test {
             System.out.println(person.getName() + " is " + person.getAge() + " years old");
         }
 
-
+        people.stream().map(person -> {
+            person.setAge(person.getAge() + 1);
+            return person;
+        }).toList();
+        List<Person> pdsds = new ArrayList<>();
+//        people.stream().map(Person::getAge)
+        people.stream().forEach(person -> pdsds.add(person));
     }
 
     static double calculateSalaryWithBonus(Employee employee, Function<Employee, Double> bonusFunction) {
