@@ -4,8 +4,14 @@
 
 package streams;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -16,7 +22,7 @@ public class ProductManager {
 
 //    static List<String> products = new ArrayList<>();
 
-    static List<String> products = List.of("laptop", "phone", "apple phone", "tablet", "monitor");
+    static List<String> products = List.of("laptop", "phone", "apple phone", "tablet", "monitor", "phone");
 
 
     public static void main(String[] args) {
@@ -53,13 +59,28 @@ public class ProductManager {
                     else return 0;
                 })
                 .forEach(product -> System.out.println(product));
+/*
 
         products.stream()
                 .sorted((p1, p2) -> {
                     return Integer.compare(p1.length(), Integer.valueOf(p2.length()));
                 })
                 .forEach(product -> System.out.println(product));
+*/
+
+        System.out.println("\n6. Show all products without duplicates");
+        products.stream()
+                .distinct()
+                .forEach(product -> System.out.println(product));
+
+        products.stream()
+                .collect(Collectors.toSet());
+        Set<String> distingProducts = new HashSet<>(products);
 
 
     }
+
+/*    void processFIle() throws RuntimeException {
+        FileInputStream fileInputStream = new FileInputStream("textfile.txt");
+    }*/
 }
